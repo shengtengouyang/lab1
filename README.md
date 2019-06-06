@@ -1,2 +1,2 @@
-# lab1
-lab1 for cs61b
+# cs61b informations
+works for cs61b
