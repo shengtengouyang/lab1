@@ -5,7 +5,7 @@ public class Planet{
     public double yyVel;
     public double mass;
     public String imgFileName;
-    public static final double G=6.67*Math.pow(10,-11);
+    private static final double G=6.67*Math.pow(10,-11);
     public Planet(double xP, double yP, double xV, double yV, double m, String img){
         xxPos=xP;
         yyPos=yP;
@@ -24,7 +24,7 @@ public class Planet{
         imgFileName=b.imgFileName;
     }
 
-    public double findR(Planet planet){
+    private double findR(Planet planet){
         return Math.pow(xxPos-planet.xxPos,2)+Math.pow(yyPos-planet.yyPos,2);
     }
     public double calcDistance(Planet planet){
