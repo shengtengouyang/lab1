@@ -1,6 +1,6 @@
 /** Performs some basic linked list tests. */
 public class LinkedListDequeTest {
-	
+
 	/* Utility method for printing out empty checks. */
 	public static boolean checkEmpty(boolean expected, boolean actual) {
 		if (expected != actual) {
@@ -19,7 +19,7 @@ public class LinkedListDequeTest {
 		return true;
 	}
 
-	/* Prints a nice message based on whether a test passed. 
+	/* Prints a nice message based on whether a test passed.
 	 * The \n means newline. */
 	public static void printTestStatus(boolean passed) {
 		if (passed) {
@@ -29,8 +29,8 @@ public class LinkedListDequeTest {
 		}
 	}
 
-	/** Adds a few things to the list, checking isEmpty() and size() are correct, 
-	  * finally printing the results. 
+	/** Adds a few things to the list, checking isEmpty() and size() are correct,
+	  * finally printing the results.
 	  *
 	  * && is the "and" operation. */
 	public static void addIsEmptySizeTest() {
