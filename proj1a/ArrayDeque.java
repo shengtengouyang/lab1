@@ -56,6 +56,9 @@ public class ArrayDeque<T> {
             return null;
         }
         front = correct(front + 1);
+        if(next==correct(front+1)){
+            next=front;
+        }
         T item = items[front];
         size--;
         items[front] = null;
@@ -70,6 +73,9 @@ public class ArrayDeque<T> {
             return null;
         }
         next = correct(next - 1);
+        if(front==correct(next-1)){
+            front=next;
+        }
         T item = items[next];
         size--;
         items[next] = null;
@@ -99,8 +105,14 @@ public class ArrayDeque<T> {
         } else {
             System.arraycopy(items, start, newItems, 0, size());
         }
-        front = size - 1;
-        next = size();
+        if(front==next){
+            front=0;
+            next=0;
+        }
+        else{
+            front = size - 1;
+            next = size();
+        }
         items = newItems;
     }
     private int correct(int index){

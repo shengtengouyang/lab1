@@ -90,14 +90,15 @@ public class ArrayDequeTest {
     @Test
     public void getTest(){
         ArrayDeque<Integer> a= new ArrayDeque<>();
-        a.addLast(0);
-        a.addLast(1);
-        a.isEmpty();
-        a.isEmpty();
+        a.addFirst(0);
+        a.removeFirst();
+        a.addLast(2);
+        a.removeLast();
         a.addLast(4);
         a.addLast(5);
         a.addLast(6);
         int b=a.removeFirst();
-        Assert.assertEquals(0,b);
+        Assert.assertEquals(4,b);
+
     }
 }
