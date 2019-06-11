@@ -12,26 +12,26 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item) {
-        if (front == -1) {
-            front = items.length - 1;
-        }
         if (size==items.length) {
             resize(size * 2);
         }
+        if(isEmpty()){
+            next=correct(next+1);
+        }
         items[front] = item;
-        front = front - 1;
+        front = correct(front - 1);
         size++;
     }
 
     public void addLast(T item) {
-        if (next == items.length) {
-            next = 0;
-        }
         if (size==items.length) {
             resize(size * 2);
         }
+        if(isEmpty()){
+            front=correct(front-1);
+        }
         items[next] = item;
-        next = next + 1;
+        next = correct(next + 1);
         size++;
     }
 
@@ -55,10 +55,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        front = front + 1;
-        if (front == items.length) {
-            front = 0;
-        }
+        front = correct(front + 1);
         T item = items[front];
         size--;
         items[front] = null;
@@ -72,10 +69,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        next = next - 1;
-        if (next == -1) {
-            next = items.length - 1;
-        }
+        next = correct(next - 1);
         T item = items[next];
         size--;
         items[next] = null;
@@ -98,12 +92,7 @@ public class ArrayDeque<T> {
             size = 8;
         }
         T[] newItems = (T[]) new Object[size];
-        int start;
-        if (front + 1 == items.length) {
-            start = 0;
-        } else {
-            start = front + 1;
-        }
+        int start=correct(front+1);
         if ((start + size()) > items.length) {
             System.arraycopy(items, start, newItems, 0, items.length - start);
             System.arraycopy(items, 0, newItems, items.length - start, start + size() - items.length);
@@ -113,5 +102,14 @@ public class ArrayDeque<T> {
         front = size - 1;
         next = size();
         items = newItems;
+    }
+    private int correct(int index){
+        if(index==-1){
+            index=items.length-1;
+        }
+        else if(index==items.length){
+            index=0;
+        }
+        return index;
     }
 }
