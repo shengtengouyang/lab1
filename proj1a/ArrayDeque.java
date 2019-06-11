@@ -2,7 +2,7 @@ public class ArrayDeque<T> {
     private int size;
     private int front;
     private int next;
-    T[] items;
+    private T[] items;
 
     public ArrayDeque() {
         items = (T[]) new Object[8];
@@ -11,38 +11,28 @@ public class ArrayDeque<T> {
         next = 0;
     }
 
-    public ArrayDeque(T item) {
-        items = (T[]) new Object[8];
-        items[0] = item;
-        size = 1;
-        next = 1;
-        front = 7;
-    }
-
     public void addFirst(T item) {
         if (front == -1) {
             front = items.length - 1;
         }
-        if (front == next) {
+        if (size==items.length) {
             resize(size * 2);
         }
         items[front] = item;
         front = front - 1;
         size++;
-        resize(items.length);
     }
 
     public void addLast(T item) {
         if (next == items.length) {
             next = 0;
         }
-        if (front == next) {
+        if (size==items.length) {
             resize(size * 2);
         }
         items[next] = item;
         next = next + 1;
         size++;
-        resize(items.length);
     }
 
     public boolean isEmpty() {
@@ -75,7 +65,6 @@ public class ArrayDeque<T> {
         if ((double) size / items.length < 0.25) {
             resize(items.length / 2);
         }
-        resize(items.length);
         return item;
     }
 
@@ -93,7 +82,6 @@ public class ArrayDeque<T> {
         if ((double) size / items.length < 0.25) {
             resize(items.length / 2);
         }
-        resize(items.length);
         return item;
     }
 
