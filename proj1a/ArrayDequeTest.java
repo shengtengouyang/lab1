@@ -80,20 +80,20 @@ public class ArrayDequeTest {
         Assert.assertArrayEquals(a.items,c);
     }
     @Test
-    public void resize(){
-        ArrayDeque<Integer> a=new ArrayDeque<>(2);
-        a.addFirst(3);
-        a.resize(2);
-        Assert.assertArrayEquals(a.items,new Integer[]{3,2});
-        a.resize(6);
-        Assert.assertArrayEquals(a.items,new Integer[]{3,2,null,null,null,null});
-    }
-    @Test
     public void printDequeTest(){
         ArrayDeque<Integer> a=new ArrayDeque<>(2);
         a.addFirst(3);
         a.addFirst(4);
         a.addLast(5);
         a.printDeque();
+    }
+    @Test
+    public void getTest(){
+        ArrayDeque<Integer> a= new ArrayDeque<>();
+        a.addFirst(0);
+        a.addFirst(1);
+        a.removeFirst();
+        a.addFirst(3);
+        a.get(0);
     }
 }
