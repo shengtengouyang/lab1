@@ -22,6 +22,29 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         rb=(T[])new Object[capacity];
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayIterater();
+    }
+    private class ArrayIterater implements Iterator<T>{
+        private int position;
+        public ArrayIterater(){
+            position=0;
+        }
+        @Override
+        public boolean hasNext() {
+            return position<capacity;
+        }
+
+        @Override
+        public T next() {
+            int current=(first+position)%capacity;
+            T item=rb[current];
+            position++;
+            return item;
+        }
+    }
+
     /**
      * Adds x to the end of the ring buffer. If there is no room, then
      * throw new RuntimeException("Ring buffer overflow"). Exceptions
@@ -31,12 +54,12 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         if(isFull()){
             throw new RuntimeException("Ring buffer overflow");
         }
-        if (last==capacity){
-            last=0;
-        }
         fillCount+=1;
         rb[last]=x;
         last=last+1;
+        if (last==capacity){
+            last=0;
+        }
     }
 
     /**
@@ -48,13 +71,13 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         if(isEmpty()){
             throw new RuntimeException("Ring buffer underflow");
         }
-        if (first==capacity){
-            first=0;
-        }
         fillCount-=1;
         T item=rb[first];
         rb[first]=null;
         first=first+1;
+        if (first==capacity){
+            first=0;
+        }
         return item;
     }
 
