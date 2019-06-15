@@ -91,12 +91,13 @@ public class ArrayDequeTest {
     public void getTest(){
         ArrayDeque<Integer> a= new ArrayDeque<>();
         a.addFirst(0);
-        a.removeFirst();
-        a.addLast(2);
+        a.addFirst(1);
         a.removeLast();
-        a.addLast(4);
+        a.addFirst(3);
+        a.removeFirst();
         a.addLast(5);
-        a.addLast(6);
+        a.removeFirst();
+        a.get(0);
         int b=a.removeFirst();
         Assert.assertEquals(4,b);
 
