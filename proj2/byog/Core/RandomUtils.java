@@ -271,7 +271,7 @@ public class RandomUtils {
         }
 
         // the for loop may not return a value when both r is (nearly) 1.0 and when the
-        // cumulative sum is less than 1.0 (as a result of floating-point roundoff error)
+        // cumulative sum is less than 1.0 (as a result of floating-pointer roundoff error)
         while (true) {
             double r = uniform(random);
             sum = 0.0;
